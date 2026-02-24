@@ -1,12 +1,20 @@
 const IORedis = require('ioredis');
 
-const redis = new IORedis(process.env.REDIS_URL || 'redis://127.0.0.1:6379', {
-  maxRetriesPerRequest: null,
-  enableReadyCheck: true,
-});
+let redis = null;
 
-redis.on('error', (err) => {
-  console.error('Redis error:', err.message);
-});
+if (process.env.REDIS_URL) {
+  redis = new IORedis(process.env.REDIS_URL, {
+    maxRetriesPerRequest: null,
+    enableReadyCheck: true,
+  });
+
+  redis.on('error', (err) => {
+    console.error('Redis error:', err.message);
+  });
+
+  console.log('✅ Redis connected');
+} else {
+  console.log('⚠️ Redis not configured, running without background jobs');
+}
 
 module.exports = redis;
