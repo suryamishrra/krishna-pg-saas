@@ -1,0 +1,24 @@
+# Dependency directories
+node_modules/
+
+# Environment variables (Contains DB passwords - VERY IMPORTANT to ignore)
+.env
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Editor directories
+.vscode/
+.idea/
